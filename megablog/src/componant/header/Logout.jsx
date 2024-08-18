@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux"
-import authService from "../../appwrite/auth"
-import logout from "../../appwrite/auth"
+import authService from "../../appwrite/Auth"
+import logout from "../../appwrite/Auth"
 
 
 function Logout() {

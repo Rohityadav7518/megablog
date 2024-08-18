@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import authService from './appwrite/auth'
+import authService from './appwrite/Auth'
 import Header from './componant/header/Header'
 import Footer from './componant/footer/Footer'
 import './index.css'
 import { Outlet } from 'react-router-dom'
 
-import { login, logOut } from './store/authSlice'
+import { login, logout } from './store/authSlice'
 
 
 
@@ -19,15 +19,17 @@ function App() {
   useEffect(() => {
     authService.getCurrentUser().then((userData) => {
       if (userData) {
-        dispatch(login(userData))
+        dispatch(login({ userData }))
       } else {
-        dispatch(logOut())
+        dispatch(logout())
 
       }
     }).finally(() => setLoading(false))
   }, [])
+
+
   return !loading ? (<div className=" min-h-screen flex flex-wrap mx-auto justify-center bg-gray-400 ">
-    <div className="w-full-block">
+    <div className="w-full block">
       <Header />
       <main>  todo : <Outlet /> </main>
 
